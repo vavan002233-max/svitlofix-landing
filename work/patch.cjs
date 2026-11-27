@@ -1,0 +1,32 @@
+const fs = require('fs');
+function replace(file, oldText, newText) { let s=fs.readFileSync(file,'utf8'); if(!s.includes(oldText)) throw new Error(`Missing text in ${file}: ${oldText.slice(0,100)}`); fs.writeFileSync(file,s.replace(oldText,newText)); }
+const file='public/index.html', source=fs.readFileSync(file,'utf8');
+const old=source.match(/        <div class="service-options"[\s\S]*?        <div class="equipment-request"/)[0].replace(/        <div class="equipment-request"$/, '');
+const html=`        <div class="service-options" role="group" aria-label="Крок 1. Оберіть категорію обладнання">
+          <button class="service-card reveal" type="button" data-service="Інвертор" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="48" y="12" width="84" height="106" rx="10"/><rect x="60" y="25" width="60" height="33" rx="4"/><path d="M70 79h40M70 91h25M90 58v13m-9-7 9 7 9-7"/></svg></span><b>Інвертор</b><small>Deye, Solis, Victron та інші</small></button>
+          <button class="service-card reveal" type="button" data-service="Система накопичення енергії" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="42" y="16" width="96" height="100" rx="12"/><rect x="54" y="29" width="72" height="55" rx="6"/><path d="m91 38-13 21h12l-4 15 18-23H92zM67 99h46"/></svg></span><b>Система накопичення енергії</b><small>Marstek, Felicity, Pylontech та інші</small></button>
+          <button class="service-card reveal" type="button" data-service="EcoFlow" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="34" y="34" width="112" height="72" rx="12"/><path d="M62 34V25h56v9M51 52h27v34H51zM91 55h39m-39 12h39m-39 12h24"/><circle cx="64" cy="69" r="5"/></svg></span><b>EcoFlow</b><small>RIVER, DELTA та додаткові батареї</small></button>
+        </div>
+        <p class="equipment__brands muted">Обираємо сумісне рішення під ваші навантаження: Deye, Solis, Victron, HYXiPOWER, MUST, Felicity, Marstek, Pylontech, EcoFlow та інші бренди.</p>
+        <section class="model-picker" aria-labelledby="model-picker-title"><h3 class="model-picker__title" id="model-picker-title">Крок 2 · Оберіть модель або тип рішення</h3><p class="muted model-picker__hint" id="model-picker-hint">Спочатку оберіть категорію обладнання вище.</p><div class="model-options" id="model-options" role="group" aria-label="Оберіть модель" hidden></div></section>
+        <div class="price-panel reveal" id="service-details" aria-live="polite"><div><p class="kicker">ОБРАНЕ РІШЕННЯ</p><h3 id="service-title">Вартість монтажу</h3><p id="service-description">Оберіть модель або варіант вище, щоб побачити вартість монтажу.</p></div><div class="price-panel__side"><span class="muted">Вартість монтажу</span><strong id="service-price" hidden></strong><a class="btn btn--gold btn--lg" id="service-apply" href="#lead-form" aria-disabled="true">Залишити заявку →</a></div></div>
+`;
+replace(file,old,html);
+replace(file,'  <script>document.documentElement.classList.add("js")</script>','  <script>document.documentElement.classList.add("js")</script>\n  <!-- Google tag / GTM: paste the chosen provider snippet here and replace its measurement/container ID. -->');
+replace(file,'<label for="f-message">Опис задачі *</label><textarea id="f-message" name="message" rows="3" required maxlength="3000"','<label for="f-message">Опис задачі <span class="muted">(необов’язково)</span></label><textarea id="f-message" name="message" rows="3" maxlength="3000"');
+replace(file,'<input type="hidden" name="service" id="f-service" value="Інвертор">','<input type="hidden" name="service" id="f-service" value="">');
+replace(file,'Натискаючи кнопку, ви погоджуєтеся на обробку контактних даних.','Натискаючи кнопку, ви погоджуєтеся на обробку контактних даних відповідно до <a href="#privacy" data-open-privacy>Політики конфіденційності</a>.');
+replace(file,'href="https://t.me/+380730732072" target="_blank" rel="noopener"','href="https://t.me/YOUR_TELEGRAM_USERNAME" data-contact="telegram" target="_blank" rel="noopener"');
+replace(file,'              Написати в Telegram\n            </a>\n            <a class="btn btn--ghost btn--lg" href="#equipment">Залишити заявку</a>',`              Написати в Telegram
+            </a>
+            <!-- Замініть +380XXXXXXXXX на номер Viber у міжнародному форматі без пробілів. -->
+            <a class="btn btn--ghost btn--lg" href="viber://chat?number=%2B380XXXXXXXXX" data-contact="viber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5c3.2-1.6 7.8-1.4 10.2.8 2.7 2.4 2.7 7.2 1 10.2l.7 3.5-3.6-1.1c-3.5 1.1-7.7.1-9.7-2.5C3.5 12.7 4 7 7 4.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.2 7.5c.3 4.1 2.5 6.5 6.5 7.1m-5.4-7c.2.8.6 1.4 1.1 1.8m2.1 2.3c.5.4 1.2.7 2 .8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Написати у Viber</a>
+            <a class="btn btn--ghost btn--lg" href="#equipment">Залишити заявку</a>`);
+replace(file,'      <p class="muted mono">© <span id="year">2026</span> SvitloFix</p>','      <p class="muted mono">© <span id="year">2026</span> SvitloFix</p>\n      <a href="#privacy" data-open-privacy>Політика конфіденційності</a>');
+replace(file,'  <script src="/assets/app.js" defer></script>',`  <dialog class="privacy-dialog" id="privacy" aria-labelledby="privacy-title"><button class="privacy-dialog__close" type="button" aria-label="Закрити">×</button><h2 id="privacy-title">Політика конфіденційності</h2><div class="privacy-dialog__body"><p>SvitloFix обробляє дані, надані через форму сайту для звернень щодо послуг у Києві та Київській області.</p><h3>Дані та мета</h3><p>Ми отримуємо ім’я, телефон, населений пункт, опис задачі та фото, які ви додаєте. Ім’я й телефон потрібні, щоб відповісти на заявку, уточнити потреби, підготувати консультацію чи попередній прорахунок. Дані заявки передаються до Telegram для опрацювання звернення.</p><h3>Зберігання та звернення</h3><p>Доступ до даних надається лише для опрацювання звернення. Дані зберігаються стільки, скільки потрібно для цієї мети або вимагає законодавство. Щодо доступу, виправлення чи видалення даних звертайтеся за телефоном <a href="tel:+380730732072" data-contact="phone">073 073 20 72</a>, з урахуванням вимог законодавства.</p><p>Надсилаючи форму, ви підтверджуєте, що ознайомилися з цією політикою.</p></div></dialog>
+  <script src="/assets/app.js" defer></script>`);
+
+
+
+
+

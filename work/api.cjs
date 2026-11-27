@@ -1,0 +1,1 @@
+const fs=require('fs');let p='functions/api/lead.js';let s=fs.readFileSync(p,'utf8').replace("  const message = clean(form.get('message'), 3000);","  const message = clean(form.get('message'), 3000) || 'Запит на консультацію / попередній прорахунок';").replace("  if (message.length < 5) errors.message = 'Опишіть задачу кількома словами';\n",'');fs.writeFileSync(p,s);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <script>document.documentElement.classList.add("js")</script>
-  <!-- Analytics setup: add either the Google tag (gtag.js) or GTM container snippet here after replacing its ID. -->
+  <!-- Google tag / GTM: paste the chosen provider snippet here and replace its measurement/container ID. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>SvitloFix — монтаж резервного живлення у Києві та області</title>
   <meta name="description" content="SvitloFix: монтаж інверторів, акумуляторів і систем резервного живлення під ключ у Києві та Київській області. Прорахунок вартості за фото. Телефонуйте 073 073 20 72.">
@@ -212,16 +212,17 @@
           <h2 id="equipment-title" class="h2 reveal">Працюємо з перевіреною технікою і підбираємо її під задачу, а не під каталог</h2>
         </div>
 
-        <div class="service-options" role="group" aria-label="Оберіть обладнання">
-          <button class="service-card reveal is-selected" type="button" data-service="Інвертор" aria-pressed="true"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="48" y="12" width="84" height="106" rx="10"/><rect x="60" y="25" width="60" height="33" rx="4"/><path d="M70 79h40M70 91h25M90 58v13m-9-7 9 7 9-7"/></svg></span><b>Інвертор</b><small>Deye та інші бренди</small></button>
-          <button class="service-card reveal" type="button" data-service="Система накопичення енергії" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="42" y="16" width="96" height="100" rx="12"/><rect x="54" y="29" width="72" height="55" rx="6"/><path d="m91 38-13 21h12l-4 15 18-23H92zM67 99h46"/></svg></span><b>Система накопичення енергії</b><small>Marstek Venus-E V3 · 5.12 kWh</small></button>
-          <button class="service-card reveal" type="button" data-service="EcoFlow" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="34" y="34" width="112" height="72" rx="12"/><path d="M62 34V25h56v9M51 52h27v34H51zM91 55h39m-39 12h39m-39 12h24"/><circle cx="64" cy="69" r="5"/></svg></span><b>EcoFlow</b><small>Портативні зарядні станції</small></button>
+        <div class="service-options" role="group" aria-label="Крок 1. Оберіть категорію обладнання">
+          <button class="service-card reveal" type="button" data-service="Інвертор" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="48" y="12" width="84" height="106" rx="10"/><rect x="60" y="25" width="60" height="33" rx="4"/><path d="M70 79h40M70 91h25M90 58v13m-9-7 9 7 9-7"/></svg></span><b>Інвертор</b><small>Deye, Solis, Victron та інші</small></button>
+          <button class="service-card reveal" type="button" data-service="Система накопичення енергії" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="42" y="16" width="96" height="100" rx="12"/><rect x="54" y="29" width="72" height="55" rx="6"/><path d="m91 38-13 21h12l-4 15 18-23H92zM67 99h46"/></svg></span><b>Система накопичення енергії</b><small>Marstek, Felicity, Pylontech та інші</small></button>
+          <button class="service-card reveal" type="button" data-service="EcoFlow" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="34" y="34" width="112" height="72" rx="12"/><path d="M62 34V25h56v9M51 52h27v34H51zM91 55h39m-39 12h39m-39 12h24"/><circle cx="64" cy="69" r="5"/></svg></span><b>EcoFlow</b><small>RIVER, DELTA та додаткові батареї</small></button>
         </div>
-        <p class="equipment__brands muted">Працюємо з обладнанням різних виробників: Deye, Solis, Victron, EcoFlow, Bluetti, Felicity та іншими. Підбір залежить від ваших потреб і сумісності системи.</p>
-        <div class="price-panel reveal" id="service-details" aria-live="polite"><div><p class="kicker">ОБРАНА ПОСЛУГА</p><h3 id="service-title">Монтаж інвертора</h3><p id="service-description">Підключимо батарею, встановимо інвертор, розключимо електрощит і налаштуємо застосунок на телефоні. Повний монтаж і запуск під ключ.</p></div><div class="price-panel__side"><span class="muted">Вартість монтажу</span><strong id="service-price">від 12 000 грн</strong><a class="btn btn--gold btn--lg" href="#lead-form">Залишити заявку →</a></div></div>
+        <p class="equipment__brands muted">Обираємо сумісне рішення під ваші навантаження: Deye, Solis, Victron, HYXiPOWER, MUST, Felicity, Marstek, Pylontech, EcoFlow та інші бренди.</p>
+        <section class="model-picker" aria-labelledby="model-picker-title"><h3 class="model-picker__title" id="model-picker-title">Крок 2 · Оберіть модель або тип рішення</h3><p class="muted model-picker__hint" id="model-picker-hint">Спочатку оберіть категорію обладнання вище.</p><div class="model-options" id="model-options" role="group" aria-label="Оберіть модель" hidden></div></section>
+        <div class="price-panel reveal" id="service-details" aria-live="polite"><div><p class="kicker">ОБРАНЕ РІШЕННЯ</p><h3 id="service-title">Вартість монтажу</h3><p id="service-description">Оберіть модель або варіант вище, щоб побачити вартість монтажу.</p></div><div class="price-panel__side"><span class="muted">Вартість монтажу</span><strong id="service-price" hidden></strong><a class="btn btn--gold btn--lg" id="service-apply" href="#lead-form" aria-disabled="true">Залишити заявку →</a></div></div>
         <div class="equipment-request" id="request"><div class="equipment-request__intro"><p class="kicker"><span class="mono">/ 03</span> Прорахунок і заявка</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Оберіть систему, додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
           <form class="form reveal" id="lead-form" action="/api/lead" method="post" enctype="multipart/form-data" novalidate>
-            <input type="hidden" name="service" id="f-service" value="Інвертор">
+            <input type="hidden" name="service" id="f-service" value="">
             <div class="form__row"><div class="field"><label for="f-name">Ім’я *</label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Як до вас звертатися"><p class="field__err" id="err-name" role="alert"></p></div><div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="32" placeholder="+380 __ ___ __ __"><p class="field__err" id="err-phone" role="alert"></p></div></div>
             <div class="field"><label for="f-city">Населений пункт <span class="muted">(необов’язково)</span></label><input id="f-city" name="city" type="text" autocomplete="address-level2" maxlength="80" placeholder="Київ або населений пункт області"></div>
             <div class="field"><label for="f-message">Опис задачі <span class="muted">(необов’язково)</span></label><textarea id="f-message" name="message" rows="3" maxlength="3000" placeholder="Що потрібно підключити та які прилади мають працювати?"></textarea><p class="field__err" id="err-message" role="alert"></p></div>
@@ -367,19 +368,19 @@
             <p class="kicker"><span class="mono">/ 08</span> Контакти</p>
             <h2 id="contacts-title" class="h2">Зв’яжіться з нами зручним способом</h2>
             <a class="contacts__phone" href="tel:+380730732072">073 073 20 72</a>
-            <p class="muted">Працюємо в Києві та Київській області. Обирайте зручний спосіб зв’язку.</p>
+            <p class="muted">Працюємо в Києві та Київській області. Телефон та Telegram — один номер.</p>
           </div>
           <div class="contacts__actions">
             <a class="btn btn--gold btn--lg" href="tel:+380730732072">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
               Подзвонити
             </a>
-            <!-- Замініть YOUR_TELEGRAM_USERNAME на username Telegram та номер у Viber на актуальний контакт. -->
-            <a class="btn btn--tg btn--lg" href="https://t.me/YOUR_TELEGRAM_USERNAME" data-contact="telegram" target="_blank" rel="noopener">
+            <a class="btn btn--tg btn--lg" href="https://t.me/+380730732072" data-contact="telegram" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.7 14l9-5.7c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.2z" fill="currentColor"/></svg>
               Написати в Telegram
             </a>
-            <a class="btn btn--ghost btn--lg" href="viber://chat?number=%2B380XXXXXXXXX" data-contact="viber">Написати у Viber</a>
+            <!-- Якщо номер Viber зміниться, замініть його в посиланні viber://chat нижче на міжнародний формат. -->
+            <a class="btn btn--ghost btn--lg" href="viber://chat?number=%2B380730732072" data-contact="viber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5c3.2-1.6 7.8-1.4 10.2.8 2.7 2.4 2.7 7.2 1 10.2l.7 3.5-3.6-1.1c-3.5 1.1-7.7.1-9.7-2.5C3.5 12.7 4 7 7 4.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.2 7.5c.3 4.1 2.5 6.5 6.5 7.1m-5.4-7c.2.8.6 1.4 1.1 1.8m2.1 2.3c.5.4 1.2.7 2 .8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Написати у Viber</a>
             <a class="btn btn--ghost btn--lg" href="#equipment">Залишити заявку</a>
           </div>
         </div>
@@ -405,25 +406,14 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
       Дзвінок
     </a>
-    <!-- Замініть YOUR_TELEGRAM_USERNAME на username Telegram. -->
-    <a href="https://t.me/YOUR_TELEGRAM_USERNAME" data-contact="telegram" target="_blank" rel="noopener" aria-label="Telegram">
+    <a href="https://t.me/+380730732072" target="_blank" rel="noopener" aria-label="Telegram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.7 14l9-5.7c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.2z" fill="currentColor"/></svg>
       Telegram
     </a>
     <a href="#equipment" class="dock__main">Прорахунок</a>
   </div>
 
-  <dialog class="privacy-dialog" id="privacy" aria-labelledby="privacy-title">
-    <button class="privacy-dialog__close" type="button" aria-label="Закрити політику">×</button>
-    <h2 id="privacy-title">Політика конфіденційності</h2>
-    <div class="privacy-dialog__body">
-      <p>Ця політика пояснює, як SvitloFix обробляє дані, які ви надаєте через форму на сайті щодо послуг у Києві та Київській області.</p>
-      <h3>Які дані ми отримуємо</h3><p>Ім’я, номер телефону, населений пункт, опис задачі та фотографії, які ви вирішили додати. Обов’язковими для заявки є ім’я й телефон.</p>
-      <h3>Мета та використання</h3><p>Ми використовуємо дані, щоб відповісти на звернення, уточнити потреби, підготувати попередню консультацію чи прорахунок і домовитися про надання послуг. Дані заявки передаються до Telegram для отримання та обробки звернень.</p>
-      <h3>Зберігання та права</h3><p>Доступ до даних мають лише особи, яким вони потрібні для відповіді на звернення. Ми зберігаємо дані стільки, скільки потрібно для цієї мети або виконання вимог законодавства, та вживаємо розумних заходів для їх захисту. Ви можете звернутися телефоном <a href="tel:+380730732072" data-contact="phone">073 073 20 72</a> із запитом щодо доступу, виправлення чи видалення ваших даних, якщо це допускається законом.</p>
-      <p>Надсилаючи форму, ви підтверджуєте, що ознайомилися з цією політикою.</p>
-    </div>
-  </dialog>
+  <dialog class="privacy-dialog" id="privacy" aria-labelledby="privacy-title"><button class="privacy-dialog__close" type="button" aria-label="Закрити">×</button><h2 id="privacy-title">Політика конфіденційності</h2><div class="privacy-dialog__body"><p>SvitloFix обробляє дані, надані через форму сайту для звернень щодо послуг у Києві та Київській області.</p><h3>Дані та мета</h3><p>Ми отримуємо ім’я, телефон, населений пункт, опис задачі та фото, які ви додаєте. Ім’я й телефон потрібні, щоб відповісти на заявку, уточнити потреби, підготувати консультацію чи попередній прорахунок. Дані заявки передаються до Telegram для опрацювання звернення.</p><h3>Зберігання та звернення</h3><p>Доступ до даних надається лише для опрацювання звернення. Дані зберігаються стільки, скільки потрібно для цієї мети або вимагає законодавство. Щодо доступу, виправлення чи видалення даних звертайтеся за телефоном <a href="tel:+380730732072" data-contact="phone">073 073 20 72</a>, з урахуванням вимог законодавства.</p><p>Надсилаючи форму, ви підтверджуєте, що ознайомилися з цією політикою.</p></div></dialog>
   <script src="/assets/app.js" defer></script>
 </body>
 </html>
