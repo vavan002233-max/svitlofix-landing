@@ -88,7 +88,7 @@
     track.replaceChildren();
     equipmentConfig.categories[categoryKey].items.forEach(([name, image]) => {
       const card = document.createElement('button'); card.type = 'button'; card.className = 'equipment-card'; card.dataset.name = name;
-      card.innerHTML = `<img src="/img/equipment/${image}.svg" alt="" loading="lazy"><span>${name}</span>`;
+      card.innerHTML = `<img src="/img/equipment/${image}.svg?v=20261127-3" alt="" loading="lazy"><span>${name}</span>`;
       card.addEventListener('click', () => { selectedItem = { name, image }; selectedPhase = ''; wizard.hidden = false; renderWizard(); wizard.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
       track.append(card);
     }); updateProgress();
@@ -105,7 +105,7 @@
     }
     const title = station ? `Підключення ${selectedItem.name}` : `Монтаж інвертора ${selectedItem.name} · ${selectedPhase}`;
     const price = station ? equipmentConfig.prices.station : equipmentConfig.prices.inverter;
-    wizardContent.innerHTML = `<div class="wizard__result"><div><p class="kicker">ВАШ ВИБІР</p><h3>${title}</h3><p class="muted">Вартість монтажу</p><strong class="wizard__price">${price}</strong><button type="button" class="btn btn--gold btn--lg" id="wizard-request">Оформити заявку →</button></div><img src="/img/equipment/${selectedItem.image}.svg" alt="${selectedItem.name}"></div>`;
+    wizardContent.innerHTML = `<div class="wizard__result"><div><p class="kicker">ВАШ ВИБІР</p><h3>${title}</h3><p class="muted">Вартість монтажу</p><strong class="wizard__price">${price}</strong><button type="button" class="btn btn--gold btn--lg" id="wizard-request">Оформити заявку →</button></div><img src="/img/equipment/${selectedItem.image}.svg?v=20261127-3" alt="${selectedItem.name}"></div>`;
     $('#wizard-request', wizardContent).addEventListener('click', () => { serviceInput.value = `${equipmentConfig.categories[categoryKey].label} · ${selectedItem.name}${selectedPhase ? ` · ${selectedPhase}` : ''}`; $('#f-message').value = `Прошу прорахувати ${title}. Орієнтовна вартість монтажу: ${price}.`; $('#request').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); window.setTimeout(() => $('#f-name').focus({ preventScroll: true }), reduce ? 0 : 500); });
   };
   $('#wizard-back').addEventListener('click', () => { if (categoryKey === 'inverters' && selectedPhase) { selectedPhase = ''; renderWizard(); } else { wizard.hidden = true; selectedItem = null; } });
