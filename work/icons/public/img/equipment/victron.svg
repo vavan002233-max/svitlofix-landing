@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
+  <defs>
+    <linearGradient id="bodyLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="bodyDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="accentGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="accentGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+  </defs>
+  
+  <rect x="66" y="24" width="108" height="162" rx="10" fill="url(#accentBlue)" stroke="#0369A1" stroke-width="2"/>
+  <path d="M66 138 H174 V176 C174 181.5 169.5 186 164 186 H76 C70.5 186 66 181.5 66 176 Z" fill="url(#bodyDark)"/>
+  <text x="120" y="52" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="800" font-size="13" letter-spacing="0.5">victron energy</text>
+  <rect x="92" y="72" width="56" height="36" rx="4" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5"/>
+  <circle cx="104" cy="84" r="2.5" fill="#4ADE80"/>
+  <circle cx="104" cy="94" r="2.5" fill="#FACC15"/>
+  <rect x="114" y="79" width="26" height="18" rx="2" fill="#38BDF8" opacity="0.8"/>
+  <rect x="84" y="186" width="10" height="14" rx="2" fill="#0F172A"/>
+  <rect x="146" y="186" width="10" height="14" rx="2" fill="#0F172A"/>
+
+</svg>

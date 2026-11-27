@@ -1,0 +1,1 @@
+const fs=require('fs');let p='work/structure.cjs',s=fs.readFileSync(p,'utf8');s=s.replace(",' ''", "'");s=s.replace(",''''  <dialog",",`  <dialog").replace('</dialog>\n  <script src="/assets/app.js" defer></script>\'\'\');','</dialog>\n  <script src="/assets/app.js" defer></script>`);');fs.writeFileSync(p,s);

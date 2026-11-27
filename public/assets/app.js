@@ -63,17 +63,6 @@
   }
   onScroll();
 
-  // Analytics events are forwarded to GA4 (if configured) and GTM via dataLayer.
-  const track = (name, params = {}) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({event:name,...params}); if (typeof window.gtag === 'function') window.gtag('event',name,params); };
-  document.addEventListener('click', (event) => {
-    const contact = event.target.closest('[data-contact], a[href^="tel:"]');
-    if (contact) track('contact_click',{contact_method:contact.dataset.contact || 'phone'});
-    const privacyLink = event.target.closest('[data-open-privacy]');
-    if (privacyLink) { event.preventDefault(); $('#privacy')?.showModal(); }
-  });
-  const privacy = $('#privacy');
-  privacy?.addEventListener('click',(event)=>{if(event.target===privacy||event.target.closest('.privacy-dialog__close'))privacy.close();});
-
   const year = $('#year');
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -81,71 +70,92 @@
   const form = $('#lead-form');
   if (!form) return;
 
-  // Edit model prices and copy in this catalog. Prices are indicative installation starting prices.
-  const catalog = {
-    'Інвертор': [
-      {id:'deye',name:'Deye',caption:'Гібридний одно- та трифазний',price:'від 12 000 грн',desc:'Монтаж гібридного інвертора Deye, підключення АКБ, захисту й налаштування системи.',art:'hybrid'},
-      {id:'solis',name:'Solis',caption:'Гібридні рішення для дому',price:'від 12 000 грн',desc:'Встановлення інвертора Solis, підключення резервних ліній і перевірка роботи.',art:'inverter'},
-      {id:'victron',name:'Victron Energy',caption:'Модульні системи живлення',price:'від 14 000 грн',desc:'Монтаж і налаштування системи Victron з урахуванням потужності та потрібної автономності.',art:'inverter'},
-      {id:'hyxipower',name:'HYXiPOWER',caption:'Гібридні одно- та трифазні',price:'від 12 000 грн',desc:'Монтаж гібридного рішення HYXiPOWER, підключення обладнання та налаштування застосунку.',art:'hybrid'},
-      {id:'must',name:'MUST',caption:'Резервне живлення будинку',price:'від 10 000 грн',desc:'Встановлення інвертора MUST, комутація резервних груп і перевірка перемикання.',art:'inverter'},
-      {id:'felicity-inverter',name:'Felicity Solar',caption:'Інверторні системи',price:'від 11 000 грн',desc:'Монтаж і налаштування системи Felicity Solar із сумісними акумуляторами.',art:'hybrid'},
-      {id:'three-phase',name:'Трифазне рішення',caption:'Для трифазної мережі',price:'від 16 000 грн',desc:'Підключення трифазного інвертора, узгодження резервних ліній і перевірка фаз.',art:'hybrid'},
-    ],
-    'Система накопичення енергії': [
-      {id:'marstek-venus',name:'Marstek Venus-E V3',caption:'5.12 kWh · накопичення енергії',price:'від 6 000 грн',desc:'Підключення Marstek Venus-E V3 до домашньої мережі та налаштування системи.',art:'battery'},
-      {id:'rack-lv',name:'Стійкова LiFePO4',caption:'Низьковольтна система 48 V',price:'від 6 000 грн',desc:'Монтаж стійкових низьковольтних батарей, DC-захисту та зв’язку BMS.',art:'rack'},
-      {id:'felicity-battery',name:'Felicity Solar',caption:'Модульна LiFePO4 батарея',price:'від 6 000 грн',desc:'Встановлення та підключення батареї Felicity Solar із перевіркою сумісності.',art:'battery'},
-      {id:'pylontech',name:'Pylontech',caption:'Стійкові модулі з BMS',price:'від 6 000 грн',desc:'Збирання системи Pylontech, підключення до інвертора та перевірка обміну даними.',art:'rack'},
-      {id:'deye-battery',name:'Deye BOS',caption:'Високовольтна LiFePO4 система',price:'від 8 000 грн',desc:'Монтаж високовольтної батарейної системи Deye, комунікацій і системного захисту.',art:'battery'},
-      {id:'hv-stack',name:'Високовольтна система',caption:'Модульна батарейна вежа',price:'від 8 000 грн',desc:'Підключення сумісної високовольтної батареї та налаштування з інвертором.',art:'rack'},
-    ],
-    'EcoFlow': [
-      {id:'river',name:'EcoFlow RIVER',caption:'Компактна портативна станція',price:'від 6 000 грн',desc:'Підключення EcoFlow RIVER до вибраних домашніх ліній через окремий ввід.',art:'station'},
-      {id:'delta',name:'EcoFlow DELTA',caption:'Домашній резерв під ключ',price:'від 6 000 грн',desc:'Інтеграція EcoFlow DELTA у домашню мережу з перемикачем і резервними лініями.',art:'station'},
-      {id:'delta-extra',name:'DELTA + додаткова батарея',caption:'Збільшений запас енергії',price:'від 7 000 грн',desc:'Підключення станції EcoFlow DELTA з додатковою батареєю та налаштування резерву.',art:'station'},
-    ],
+  // Edit product names, image paths and installation prices in this single config object.
+  const equipmentConfig = {
+    prices: { inverter: 'від 10 000 грн', station: 'від 6 000 грн' },
+    categories: {
+      inverters: { label: 'Інвертори та системи накопичення', kind: 'inverter', items: [
+        {name:'Deye',image:'deye.svg'},{name:'Solis',image:'solis.svg'},{name:'Must',image:'must.svg'},{name:'Growatt',image:'growatt.svg'},{name:'Victron',image:'victron.svg'},{name:'LuxPower',image:'luxpower.svg'},{name:'HYXiPOWER',image:'hyxipower.svg'},{name:'Felicity',image:'felicity.svg'},{name:'Інші',image:'inverter-other.svg'}
+      ]},
+      stations: { label: 'Портативні зарядні станції', kind: 'station', items: [
+        {name:'EcoFlow Delta 2',image:'ecoflow-delta-2.svg'},{name:'EcoFlow Delta 3',image:'ecoflow-delta-3.svg'},{name:'EcoFlow Delta Pro',image:'ecoflow-delta-pro.svg'},{name:'Marstek Venus',image:'marstek-venus.svg'},{name:'Інші',image:'station-other.svg'}
+      ]}
+    }
   };
-  const serviceInput = $('#f-service');
-  const modelOptions = $('#model-options');
-  const modelHint = $('#model-picker-hint');
-  const serviceApply = $('#service-apply');
-  let selectedCategory = '';
-  let selectedModel = null;
-  const showModelPrice = () => {
-    const ready = Boolean(selectedCategory && selectedModel);
-    $('#service-title').textContent = ready ? selectedModel.name : 'Вартість монтажу';
-    $('#service-description').textContent = ready ? selectedModel.desc : 'Оберіть модель або варіант вище, щоб побачити вартість монтажу.';
-    $('#service-price').textContent = ready ? selectedModel.price : '';
-    $('#service-price').hidden = !ready;
-    serviceApply.setAttribute('aria-disabled', String(!ready));
-    if (ready) serviceInput.value = selectedCategory + ' — ' + selectedModel.name + ' (' + selectedModel.caption + ')';
-    else serviceInput.value = '';
+  const track = (name, params = {}) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event:name,...params});
+    if (typeof window.gtag === 'function') window.gtag('event',name,params);
   };
-  const chooseCategory = (category) => {
-    selectedCategory = category;
-    selectedModel = null;
-    $$('.service-card').forEach((card) => {
-      const active = card.dataset.service === category;
-      card.classList.toggle('is-selected', active);
-      card.setAttribute('aria-pressed', String(active));
-    });
-    modelHint.textContent = 'Оберіть конкретну модель або тип рішення. Вартість монтажу з’явиться після вибору.';
-    modelOptions.innerHTML = catalog[category].map((model) => '<button class="model-card" type="button" data-model="' + model.id + '" aria-pressed="false"><img src="/img/models/' + model.id + '.svg" width="480" height="320" alt="Ілюстрація: ' + model.name + '"><span class="model-card__name">' + model.name + '</span><span class="model-card__caption">' + model.caption + '</span></button>').join('');
-    modelOptions.hidden = false;
-    showModelPrice();
-  };
-  $$('.service-card').forEach((card) => card.addEventListener('click', () => chooseCategory(card.dataset.service)));
-  modelOptions.addEventListener('click', (event) => {
-    const card = event.target.closest('[data-model]');
-    if (!card) return;
-    selectedModel = catalog[selectedCategory].find((model) => model.id === card.dataset.model);
-    $$('.model-card', modelOptions).forEach((item) => { const active = item === card; item.classList.toggle('is-selected', active); item.setAttribute('aria-pressed', String(active)); });
-    showModelPrice();
+  document.addEventListener('click',(event)=>{
+    const link=event.target.closest('[data-contact],a[href^="tel:"]');
+    if(link)track('contact_click',{contact_method:link.dataset.contact||'phone'});
+    const privacyLink=event.target.closest('[data-open-privacy]');
+    if(privacyLink){event.preventDefault();$('#privacy')?.showModal();}
   });
-  serviceApply.addEventListener('click', (event) => {
-    if (!selectedModel) { event.preventDefault(); $('#model-picker-title').scrollIntoView({behavior:'smooth',block:'center'}); return; }
-    serviceInput.value = selectedCategory + ' — ' + selectedModel.name + ' (' + selectedModel.caption + ')';
+  const privacyDialog=$('#privacy');
+  privacyDialog?.addEventListener('click',(event)=>{if(event.target===privacyDialog||event.target.closest('.privacy-dialog__close'))privacyDialog.close();});
+
+  const trackEl=$('#equipment-track'), progress=$('#carousel-progress-fill'), progressBox=$('.carousel-progress');
+  const tabs=$$('.equipment-tab'); const flow=$('#equipment-flow'), phaseScreen=$('#flow-phase'), resultScreen=$('#flow-result');
+  const serviceInput=$('#f-service'); let activeCategory='inverters', selectedItem=null, selectedPhase='';
+  const renderCarousel=()=>{
+    const category=equipmentConfig.categories[activeCategory];
+    trackEl.setAttribute('aria-labelledby',activeCategory==='inverters'?'tab-inverters':'tab-stations');
+    trackEl.innerHTML=category.items.map((item,index)=>'<button class="equipment-card" type="button" data-equipment-index="'+index+'" aria-pressed="false"><img src="/img/equipment/'+item.image+'" width="480" height="300" alt="Ілюстрація обладнання '+item.name+'" loading="lazy"><span>'+item.name+'</span></button>').join('');
+    updateProgress();
+  };
+  const updateProgress=()=>{
+    const max=trackEl.scrollWidth-trackEl.clientWidth;
+    const value=max>0?trackEl.scrollLeft/max:1;
+    progress.style.width=(value*100)+'%'; progressBox.setAttribute('aria-valuenow',String(Math.round(value*100)));
+  };
+  renderCarousel();
+  trackEl.addEventListener('scroll',updateProgress,{passive:true});
+  $('#equipment-prev').addEventListener('click',()=>trackEl.scrollBy({left:-Math.max(220,trackEl.clientWidth*.72),behavior:'smooth'}));
+  $('#equipment-next').addEventListener('click',()=>trackEl.scrollBy({left:Math.max(220,trackEl.clientWidth*.72),behavior:'smooth'}));
+  tabs.forEach(tab=>tab.addEventListener('click',()=>{
+    activeCategory=tab.dataset.equipmentTab; selectedItem=null; selectedPhase=''; serviceInput.value=''; flow.hidden=true;
+    tabs.forEach(t=>{const on=t===tab;t.classList.toggle('is-active',on);t.setAttribute('aria-selected',String(on));});
+    trackEl.scrollLeft=0; renderCarousel();
+  }));
+  const showResult=(detail,price)=>{
+    const category=equipmentConfig.categories[activeCategory];
+    const summary=category.kind==='inverter'?'Монтаж інвертора '+selectedItem.name+' · '+selectedPhase:'Підключення '+selectedItem.name;
+    $('#flow-image').src='/img/equipment/'+selectedItem.image;
+    $('#flow-image').alt='Обране обладнання: '+selectedItem.name;
+    $('#flow-summary').textContent=summary; $('#flow-detail').textContent=detail;
+    $('#flow-price').textContent=price; resultScreen.hidden=false; phaseScreen.hidden=true; flow.hidden=false;
+    serviceInput.value=summary+(detail?' · '+detail:'');
+  };
+  trackEl.addEventListener('click',(event)=>{
+    const card=event.target.closest('[data-equipment-index]'); if(!card)return;
+    selectedItem=equipmentConfig.categories[activeCategory].items[Number(card.dataset.equipmentIndex)]; selectedPhase='';
+    $$('.equipment-card',trackEl).forEach(item=>{const on=item===card;item.classList.toggle('is-selected',on);item.setAttribute('aria-pressed',String(on));});
+    flow.hidden=false; resultScreen.hidden=true;
+    if(equipmentConfig.categories[activeCategory].kind==='inverter'){
+      phaseScreen.hidden=false; serviceInput.value='';
+      $('#flow-phase').scrollIntoView({behavior:'smooth',block:'center'});
+    }else{
+      showResult('',equipmentConfig.prices.station);
+      flow.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  });
+  $$('.phase-option').forEach(button=>button.addEventListener('click',()=>{
+    selectedPhase=button.dataset.phase; $$('.phase-option').forEach(item=>item.classList.toggle('is-selected',item===button));
+    showResult('',equipmentConfig.prices.inverter); flow.scrollIntoView({behavior:'smooth',block:'center'});
+  }));
+  $('#flow-back').addEventListener('click',()=>{
+    const kind=equipmentConfig.categories[activeCategory].kind;
+    if(kind==='inverter'&&!resultScreen.hidden){resultScreen.hidden=true;phaseScreen.hidden=false;selectedPhase='';serviceInput.value='';return;}
+    flow.hidden=true;selectedItem=null;selectedPhase='';serviceInput.value='';
+    $('.equipment-card',trackEl).forEach(item=>{item.classList.remove('is-selected');item.setAttribute('aria-pressed','false');});
+    $('#equipment').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  $('#flow-apply').addEventListener('click',()=>{
+    if(!selectedItem)return;
+    const category=equipmentConfig.categories[activeCategory];
+    serviceInput.value=(category.kind==='inverter'?'Монтаж інвертора ':'Підключення ')+selectedItem.name+(selectedPhase?' · '+selectedPhase:'');
   });
 
   const lightbox = document.createElement('dialog');

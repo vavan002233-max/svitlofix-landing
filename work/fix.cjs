@@ -1,0 +1,1 @@
+const fs=require('fs');let p='work/structure.cjs',s=fs.readFileSync(p,'utf8');s=s.replace(",'''            <!-- Viber uses",",`            <!-- Viber uses").replace("Залишити заявку</a>''');","Залишити заявку</a>`);");fs.writeFileSync(p,s);

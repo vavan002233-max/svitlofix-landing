@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
+  <defs>
+    <linearGradient id="bodyLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="bodyDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="accentGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="accentGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+  </defs>
+  
+  <path d="M54 74 C54 62 64 54 76 54 H164 C176 54 186 62 186 74 V88 H54 Z" fill="#334155" stroke="#64748B" stroke-width="2"/>
+  <rect x="64" y="62" width="30" height="12" rx="6" fill="#0F172A"/>
+  <rect x="146" y="62" width="30" height="12" rx="6" fill="#0F172A"/>
+  <rect x="50" y="78" width="140" height="98" rx="14" fill="url(#bodyDark)" stroke="#94A3B8" stroke-width="2"/>
+  <rect x="50" y="78" width="140" height="26" rx="12" fill="#CBD5E1"/>
+  <rect x="82" y="114" width="76" height="36" rx="6" fill="#020617" stroke="#4ADE80" stroke-width="1.5"/>
+  <text x="120" y="136" text-anchor="middle" fill="#4ADE80" font-family="Arial, sans-serif" font-weight="800" font-size="14">100%</text>
+  <text x="120" y="166" text-anchor="middle" fill="#F8FAFC" font-family="Arial, sans-serif" font-weight="700" font-size="10" letter-spacing="1">DELTA 3</text>
+
+</svg>

@@ -1,0 +1,1 @@
+const fs=require('fs');let p='public/index.html',s=fs.readFileSync(p,'utf8');s=s.replace('<!-- 4. PROCESS -->','<!-- 3. PROCESS -->').replace('<!-- 5. ADVANTAGES -->','<!-- 4. ADVANTAGES -->').replace('<!-- 06. GALLERY -->','<!-- 5. GALLERY -->').replace('<!-- FAQ -->','<!-- 6. FAQ -->').replace('<span class="mono">/ 01</span> Заявка','Заявка');fs.writeFileSync(p,s);

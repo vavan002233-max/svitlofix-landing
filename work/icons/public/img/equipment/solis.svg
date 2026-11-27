@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
+  <defs>
+    <linearGradient id="bodyLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="bodyDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="accentGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="accentGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+  </defs>
+  
+  <rect x="64" y="28" width="112" height="156" rx="14" fill="url(#bodyLight)" stroke="#94A3B8" stroke-width="2"/>
+  <rect x="64" y="114" width="112" height="6" fill="url(#accentOrange)"/>
+  <rect x="94" y="64" width="52" height="34" rx="5" fill="#0F172A" stroke="#475569" stroke-width="2"/>
+  <rect x="100" y="70" width="40" height="16" rx="2" fill="#38BDF8" opacity="0.8"/>
+  <circle cx="105" cy="92" r="2" fill="#4ADE80"/>
+  <circle cx="115" cy="92" r="2" fill="#FACC15"/>
+  <circle cx="125" cy="92" r="2" fill="#94A3B8"/>
+  <text x="120" y="50" text-anchor="middle" fill="#EA580C" font-family="Arial, sans-serif" font-weight="800" font-size="14" letter-spacing="1">solis</text>
+  <rect x="82" y="184" width="8" height="15" rx="2" fill="#1E293B"/>
+  <rect x="98" y="184" width="8" height="15" rx="2" fill="#1E293B"/>
+  <rect x="134" y="184" width="8" height="15" rx="2" fill="#1E293B"/>
+  <rect x="150" y="184" width="8" height="15" rx="2" fill="#1E293B"/>
+
+</svg>

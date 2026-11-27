@@ -1,0 +1,1 @@
+const fs=require('fs');let p='public/index.html',s=fs.readFileSync(p,'utf8').replace('<!-- 1. HERO -->','<!-- HERO -->').replace('<div class="equipment-carousel" aria-label="Оберіть обладнання">','<div class="equipment-carousel" id="equipment-carousel" aria-label="Оберіть обладнання">');fs.writeFileSync(p,s);
