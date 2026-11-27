@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
+  <defs>
+    <linearGradient id="bodyLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="bodyDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="accentGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="accentGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+  </defs>
+  
+  <rect x="46" y="34" width="76" height="132" rx="10" fill="url(#bodyLight)" stroke="#94A3B8" stroke-width="2"/>
+  <rect x="66" y="56" width="36" height="24" rx="4" fill="#0F172A"/>
+  <path d="M86 61 L80 69 H84 L82 75 L88 67 H84 Z" fill="#FACC15"/>
+  <rect x="130" y="46" width="64" height="120" rx="8" fill="url(#bodyDark)" stroke="#475569" stroke-width="2"/>
+  <rect x="138" y="58" width="48" height="18" rx="3" fill="#1E293B" stroke="#334155"/>
+  <rect x="138" y="82" width="48" height="18" rx="3" fill="#1E293B" stroke="#334155"/>
+  <rect x="138" y="106" width="48" height="18" rx="3" fill="#1E293B" stroke="#334155"/>
+  <rect x="138" y="130" width="48" height="18" rx="3" fill="#1E293B" stroke="#334155"/>
+  <circle cx="178" cy="67" r="2" fill="#4ADE80"/>
+  <circle cx="178" cy="91" r="2" fill="#4ADE80"/>
+  <circle cx="178" cy="115" r="2" fill="#4ADE80"/>
+  <circle cx="178" cy="139" r="2" fill="#4ADE80"/>
+
+</svg>

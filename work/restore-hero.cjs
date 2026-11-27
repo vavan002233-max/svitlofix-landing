@@ -1,0 +1,6 @@
+const fs=require('fs');
+let p='public/index.html',s=fs.readFileSync(p,'utf8');
+s=s.replace('<link rel="preload" as="image" href="/img/hero.webp" imagesrcset="/img/hero-sm.webp 900w, /img/hero.webp 1376w" imagesizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high">','<link rel="preload" as="image" href="/img/hero01.png" fetchpriority="high">');
+s=s.replace('<source type="image/webp" srcset="/img/hero-sm.webp 900w, /img/hero.webp 1376w" sizes="(max-width: 900px) 100vw, 58vw">\n            <img src="/img/hero.webp" width="1376" height="768" alt="Змонтований гібридний інвертор, стійка акумуляторів LiFePO4 та електрощит з акуратно прокладеними кабелями" fetchpriority="high" decoding="async">','<img src="/img/hero01.png" width="1672" height="941" alt="Інвертор, акумуляторний блок та електрощит системи резервного живлення" fetchpriority="high" decoding="async">');
+fs.writeFileSync(p,s);
+p='public/assets/styles.css';s=fs.readFileSync(p,'utf8').replace('.hero__visual img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; object-position: 40% 50%; }','.hero__visual img { width: 100%; aspect-ratio: 1672 / 941; object-fit: contain; object-position: center; background: var(--bg-2); }').replace('.hero__visual img { aspect-ratio: 4 / 3.4; }','.hero__visual img { aspect-ratio: 1672 / 941; }');fs.writeFileSync(p,s);
