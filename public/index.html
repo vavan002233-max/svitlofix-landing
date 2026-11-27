@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap">
-  <link rel="preload" as="image" href="/img/hero01.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/img/hero.webp" imagesrcset="/img/hero-sm.webp 900w, /img/hero.webp 1376w" imagesizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high">
   <link rel="stylesheet" href="/assets/styles.css">
 
   <script type="application/ld+json">
@@ -74,8 +74,8 @@
       </a>
 
       <nav class="nav" id="nav" aria-label="Головна навігація">
-        <a href="#services">Послуги</a>
         <a href="#equipment">Обладнання</a>
+        <a href="#services">Послуги</a>
         <a href="#process">Як ми працюємо</a>
         <a href="#why">Переваги</a>
         <a href="#contacts">Контакти</a>
@@ -122,7 +122,8 @@
 
         <div class="hero__visual reveal">
           <picture>
-            <img src="/img/hero01.png" width="1672" height="941" alt="Інвертор, акумуляторний блок та електрощит системи резервного живлення" fetchpriority="high" decoding="async">
+            <source type="image/webp" srcset="/img/hero-sm.webp 900w, /img/hero.webp 1376w" sizes="(max-width: 900px) 100vw, 58vw">
+            <img src="/img/hero.webp" width="1376" height="768" alt="Змонтований гібридний інвертор, стійка акумуляторів LiFePO4 та електрощит з акуратно прокладеними кабелями" fetchpriority="high" decoding="async">
           </picture>
           <div class="hud" aria-hidden="true">
             <div class="hud__head"><span class="hud__live"></span>Система · онлайн</div>
@@ -136,11 +137,37 @@
       </div>
     </section>
 
-    <!-- 2. SERVICES -->
+    <!-- 2. EQUIPMENT -->
+    <section class="section equipment" id="equipment" aria-labelledby="equipment-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker reveal"><span class="mono">/ 01</span> ПІДБІР ОБЛАДНАННЯ ТА ВАРТІСТЬ</p>
+          <h2 id="equipment-title" class="h2 reveal">Працюємо з перевіреною технікою і підбираємо її під задачу, а не під каталог</h2>
+        </div>
+
+        <div class="equipment-tabs" role="tablist" aria-label="Категорія обладнання">
+          <button class="equipment-tab is-active" type="button" role="tab" aria-selected="true" data-category="inverters">Інвертори та системи накопичення</button>
+          <button class="equipment-tab" type="button" role="tab" aria-selected="false" data-category="stations">Портативні зарядні станції</button>
+        </div>
+        <div class="carousel" aria-label="Оберіть обладнання"><button class="carousel__arrow" type="button" data-direction="-1" aria-label="Прокрутити вліво">‹</button><div class="carousel__track" id="equipment-track" tabindex="0" aria-label="Обладнання"></div><button class="carousel__arrow" type="button" data-direction="1" aria-label="Прокрутити вправо">›</button></div>
+        <div class="carousel-progress" aria-hidden="true"><span id="carousel-progress"></span></div>
+        <section class="wizard" id="equipment-wizard" aria-live="polite" hidden><button type="button" class="wizard__back" id="wizard-back">← Назад до обладнання</button><div id="wizard-content"></div></section>
+        <div class="equipment-request" id="request"><div class="equipment-request__intro"><p class="kicker"><span class="mono">КАЛЬКУЛЯТОР</span> Прорахунок і заявка</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Оберіть систему, додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
+          <form class="form reveal" id="lead-form" action="/api/lead" method="post" enctype="multipart/form-data" novalidate>
+            <input type="hidden" name="service" id="f-service" value="">
+            <div class="form__row"><div class="field"><label for="f-name">Ім’я *</label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Як до вас звертатися"><p class="field__err" id="err-name" role="alert"></p></div><div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="32" placeholder="+380 __ ___ __ __"><p class="field__err" id="err-phone" role="alert"></p></div></div>
+            <div class="field"><label for="f-city">Населений пункт <span class="muted">(необов’язково)</span></label><input id="f-city" name="city" type="text" autocomplete="address-level2" maxlength="80" placeholder="Київ або населений пункт області"></div>
+            <div class="field"><label for="f-message">Опис задачі *</label><textarea id="f-message" name="message" rows="3" required maxlength="3000" placeholder="Що потрібно підключити та які прилади мають працювати?"></textarea><p class="field__err" id="err-message" role="alert"></p></div>
+            <div class="field"><span class="label">Фото об’єкта (до 6 шт.)</span><label class="drop" id="drop" for="f-photos"><input id="f-photos" name="photos" type="file" accept="image/*" multiple class="sr-only"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 15V4m-4 4 4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span><b>Додати фото</b> або перетягніть сюди</span><small class="muted">JPG, PNG — автоматично стискаємо</small></label><ul class="thumbs" id="thumbs" aria-live="polite"></ul></div>
+            <div class="hp" aria-hidden="true"><label for="f-company">Компанія</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div><button class="btn btn--gold btn--lg btn--block" type="submit" id="submit"><span class="btn__text">Надіслати заявку</span><span class="btn__spinner" aria-hidden="true"></span></button><p class="form__note muted">Натискаючи кнопку, ви погоджуєтеся на обробку контактних даних.</p><div class="form__status" id="form-status" role="status" aria-live="polite"></div><div class="form__success" id="form-success" hidden><h3>Заявку отримано</h3><p>Дякуємо! Ми зв’яжемося з вами найближчим часом. Телефонуйте: <a href="tel:+380730732072">073 073 20 72</a>.</p><button type="button" class="btn btn--ghost" id="form-again">Надіслати ще одну</button></div></form></div>
+      </div>
+    </section>
+
+    <!-- 3. SERVICES -->
     <section class="section services" id="services" aria-labelledby="services-title">
       <div class="wrap services__grid">
         <div class="services__aside">
-          <p class="kicker reveal"><span class="mono">/ 01</span> Послуги</p>
+          <p class="kicker reveal"><span class="mono">/ 02</span> Послуги</p>
           <h2 id="services-title" class="h2 reveal">Усе, що потрібно для світла без перебоїв</h2>
           <p class="muted reveal">Беремо на себе повний цикл: від схеми підключення до перевірки під навантаженням. Одна команда відповідає за результат.</p>
           <figure class="services__photo reveal">
@@ -202,37 +229,12 @@
       </div>
     </section>
 
-    <!-- 3. EQUIPMENT -->
-    <section class="section equipment" id="equipment" aria-labelledby="equipment-title">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker reveal"><span class="mono">/ 02</span> Обладнання та бренди</p>
-          <h2 id="equipment-title" class="h2 reveal">Працюємо з перевіреною технікою і підбираємо її під задачу, а не під каталог</h2>
-        </div>
-
-        <div class="service-options" role="group" aria-label="Оберіть обладнання">
-          <button class="service-card reveal is-selected" type="button" data-service="Інвертор" aria-pressed="true"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="48" y="12" width="84" height="106" rx="10"/><rect x="60" y="25" width="60" height="33" rx="4"/><path d="M70 79h40M70 91h25M90 58v13m-9-7 9 7 9-7"/></svg></span><b>Інвертор</b><small>Deye та інші бренди</small></button>
-          <button class="service-card reveal" type="button" data-service="Система накопичення енергії" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="42" y="16" width="96" height="100" rx="12"/><rect x="54" y="29" width="72" height="55" rx="6"/><path d="m91 38-13 21h12l-4 15 18-23H92zM67 99h46"/></svg></span><b>Система накопичення енергії</b><small>Marstek Venus-E V3 · 5.12 kWh</small></button>
-          <button class="service-card reveal" type="button" data-service="EcoFlow" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="34" y="34" width="112" height="72" rx="12"/><path d="M62 34V25h56v9M51 52h27v34H51zM91 55h39m-39 12h39m-39 12h24"/><circle cx="64" cy="69" r="5"/></svg></span><b>EcoFlow</b><small>Портативні зарядні станції</small></button>
-        </div>
-        <div class="price-panel reveal" id="service-details" aria-live="polite"><div><p class="kicker">ОБРАНА ПОСЛУГА</p><h3 id="service-title">Монтаж інвертора</h3><p id="service-description">Підключимо батарею, встановимо інвертор, розключимо електрощит і налаштуємо застосунок на телефоні. Повний монтаж і запуск під ключ.</p></div><div class="price-panel__side"><span class="muted">Вартість монтажу</span><strong id="service-price">від 12 000 грн</strong><a class="btn btn--gold btn--lg" href="#lead-form">Залишити заявку →</a></div></div>
-        <div class="equipment-request" id="request"><div class="equipment-request__intro"><p class="kicker"><span class="mono">/ 03</span> Прорахунок і заявка</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Оберіть систему, додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
-          <form class="form reveal" id="lead-form" action="/api/lead" method="post" enctype="multipart/form-data" novalidate>
-            <input type="hidden" name="service" id="f-service" value="Інвертор">
-            <div class="form__row"><div class="field"><label for="f-name">Ім’я *</label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Як до вас звертатися"><p class="field__err" id="err-name" role="alert"></p></div><div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="32" placeholder="+380 __ ___ __ __"><p class="field__err" id="err-phone" role="alert"></p></div></div>
-            <div class="field"><label for="f-city">Населений пункт <span class="muted">(необов’язково)</span></label><input id="f-city" name="city" type="text" autocomplete="address-level2" maxlength="80" placeholder="Київ або населений пункт області"></div>
-            <div class="field"><label for="f-message">Опис задачі *</label><textarea id="f-message" name="message" rows="3" required maxlength="3000" placeholder="Що потрібно підключити та які прилади мають працювати?"></textarea><p class="field__err" id="err-message" role="alert"></p></div>
-            <div class="field"><span class="label">Фото об’єкта (до 6 шт.)</span><label class="drop" id="drop" for="f-photos"><input id="f-photos" name="photos" type="file" accept="image/*" multiple class="sr-only"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 15V4m-4 4 4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span><b>Додати фото</b> або перетягніть сюди</span><small class="muted">JPG, PNG — автоматично стискаємо</small></label><ul class="thumbs" id="thumbs" aria-live="polite"></ul></div>
-            <div class="hp" aria-hidden="true"><label for="f-company">Компанія</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div><button class="btn btn--gold btn--lg btn--block" type="submit" id="submit"><span class="btn__text">Надіслати заявку</span><span class="btn__spinner" aria-hidden="true"></span></button><p class="form__note muted">Натискаючи кнопку, ви погоджуєтеся на обробку контактних даних.</p><div class="form__status" id="form-status" role="status" aria-live="polite"></div><div class="form__success" id="form-success" hidden><h3>Заявку отримано</h3><p>Дякуємо! Ми зв’яжемося з вами найближчим часом. Телефонуйте: <a href="tel:+380730732072">073 073 20 72</a>.</p><button type="button" class="btn btn--ghost" id="form-again">Надіслати ще одну</button></div></form></div>
-      </div>
-    </section>
-
     <!-- 4. PROCESS -->
     <section class="section process" id="process" aria-labelledby="process-title">
       <div class="wrap">
         <div class="section-head section-head--split">
           <div>
-            <p class="kicker reveal"><span class="mono">/ 04</span> Як ми працюємо</p>
+            <p class="kicker reveal"><span class="mono">/ 03</span> Як ми працюємо</p>
             <h2 id="process-title" class="h2 reveal">П’ять кроків від фото до&nbsp;увімкненого світла</h2>
           </div>
           <p class="muted reveal">Прозорий порядок робіт: ви знаєте, що відбувається на кожному етапі і скільки це коштує, ще до початку монтажу.</p>
@@ -272,7 +274,7 @@
     <section class="section why" id="why" aria-labelledby="why-title">
       <div class="wrap">
         <div class="section-head">
-          <p class="kicker reveal"><span class="mono">/ 05</span> Переваги</p>
+          <p class="kicker reveal"><span class="mono">/ 04</span> Переваги</p>
           <h2 id="why-title" class="h2 reveal">Чому нам довіряють енергонезалежність дому та бізнесу</h2>
         </div>
 
@@ -313,7 +315,7 @@
     </section>
 
     <!-- 06. GALLERY -->
-    <section class="section gallery" id="gallery" aria-labelledby="gallery-title"><div class="wrap"><div class="section-head"><p class="kicker reveal"><span class="mono">/ 06</span> Наші роботи</p><h2 id="gallery-title" class="h2 reveal">Галерея монтажів</h2><p class="muted reveal">Натисніть на фото, щоб відкрити його у повному розмірі.</p></div><div class="gallery__grid">
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-title"><div class="wrap"><div class="section-head"><p class="kicker reveal"><span class="mono">/ 05</span> Наші роботи</p><h2 id="gallery-title" class="h2 reveal">Галерея монтажів</h2><p class="muted reveal">Натисніть на фото, щоб відкрити його у повному розмірі.</p></div><div class="gallery__grid">
       <figure class="gallery__item"><a class="gallery__link" href="/img/portfolio/portfolio-01.jpg" data-lightbox aria-label="Відкрити фото роботи 1"><img src="/img/portfolio/portfolio-01.jpg" alt="Монтаж інвертора та системи накопичення енергії" loading="lazy"><span class="gallery__zoom">Збільшити ⤢</span></a><figcaption>Монтаж інвертора та акумулятора</figcaption></figure>
       <figure class="gallery__item"><a class="gallery__link" href="/img/portfolio/portfolio-02.jpg" data-lightbox aria-label="Відкрити фото роботи 2"><img src="/img/portfolio/portfolio-02.jpg" alt="Настінний інвертор з акумуляторною батареєю" loading="lazy"><span class="gallery__zoom">Збільшити ⤢</span></a><figcaption>Інвертор та акумулятор у квартирі</figcaption></figure>
       <figure class="gallery__item"><a class="gallery__link" href="/img/portfolio/portfolio-03.jpg" data-lightbox aria-label="Відкрити фото роботи 3"><img src="/img/portfolio/portfolio-03.jpg" alt="Інвертор Solis та акумуляторна система" loading="lazy"><span class="gallery__zoom">Збільшити ⤢</span></a><figcaption>Система Solis з накопиченням енергії</figcaption></figure>
@@ -328,7 +330,7 @@
     <section class="section faq" aria-labelledby="faq-title">
       <div class="wrap faq__grid">
         <div>
-          <p class="kicker reveal"><span class="mono">/ 07</span> Питання</p>
+          <p class="kicker reveal"><span class="mono">/ 06</span> Питання</p>
           <h2 id="faq-title" class="h2 reveal">Часті запитання</h2>
         </div>
         <div class="faq__list">
@@ -361,7 +363,7 @@
       <div class="wrap">
         <div class="contacts__card reveal">
           <div class="contacts__copy">
-            <p class="kicker"><span class="mono">/ 08</span> Контакти</p>
+            <p class="kicker"><span class="mono">/ 07</span> Контакти</p>
             <h2 id="contacts-title" class="h2">Зв’яжіться з нами зручним способом</h2>
             <a class="contacts__phone" href="tel:+380730732072">073 073 20 72</a>
             <p class="muted">Працюємо в Києві та Київській області. Телефон та Telegram — один номер.</p>

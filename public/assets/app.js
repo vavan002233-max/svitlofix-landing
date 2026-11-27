@@ -70,21 +70,47 @@
   const form = $('#lead-form');
   if (!form) return;
 
-  const serviceData = {
-    'Інвертор': { title: 'Монтаж інвертора', price: 'від 12 000 грн', description: 'Підключимо батарею, встановимо інвертор, розключимо електрощит і налаштуємо застосунок на телефоні. Повний монтаж і запуск під ключ.' },
-    'Система накопичення енергії': { title: 'Монтаж системи накопичення енергії', price: 'від 6 000 грн', description: 'Встановимо та підключимо систему накопичення до домашньої мережі, перевіримо роботу обладнання й налаштуємо мобільний застосунок. Монтаж під ключ.' },
-    'EcoFlow': { title: 'Підключення EcoFlow', price: 'від 6 000 грн', description: 'Підключимо EcoFlow до потрібних ліній будинку чи квартири, налаштуємо систему та застосунок на телефоні. Монтаж і запуск під ключ.' },
-  };
   const serviceInput = $('#f-service');
-  $$('.service-card').forEach((card) => card.addEventListener('click', () => {
-    const name = card.dataset.service;
-    const data = serviceData[name];
-    $$('.service-card').forEach((item) => { item.classList.toggle('is-selected', item === card); item.setAttribute('aria-pressed', String(item === card)); });
-    $('#service-title').textContent = data.title;
-    $('#service-price').textContent = data.price;
-    $('#service-description').textContent = data.description;
-    serviceInput.value = name;
-  }));
+  const equipmentConfig = {
+    prices: { inverter: 'від 10 000 грн', station: 'від 6 000 грн' },
+    categories: {
+      inverters: { label: 'Інвертори та системи накопичення', type: 'Монтаж інвертора', items: [
+        ['Deye','deye'],['Solis','solis'],['Must','must'],['Growatt','growatt'],['Victron','victron'],['LuxPower','luxpower'],['HYXiPOWER','hyxipower'],['Felicity','felicity'],['Інші','inverter-other']
+      ]},
+      stations: { label: 'Портативні зарядні станції', type: 'Підключення портативної зарядної станції', items: [
+        ['EcoFlow Delta 2','ecoflow-delta-2'],['EcoFlow Delta 3','ecoflow-delta-3'],['EcoFlow Delta Pro','ecoflow-delta-pro'],['Marstek Venus','marstek-venus'],['Інші','station-other']
+      ]}
+    }
+  };
+  const track = $('#equipment-track'), progress = $('#carousel-progress'), wizard = $('#equipment-wizard'), wizardContent = $('#wizard-content');
+  let categoryKey = 'inverters', selectedItem = null, selectedPhase = '';
+  const renderCards = () => {
+    track.replaceChildren();
+    equipmentConfig.categories[categoryKey].items.forEach(([name, image]) => {
+      const card = document.createElement('button'); card.type = 'button'; card.className = 'equipment-card'; card.dataset.name = name;
+      card.innerHTML = `<img src="/img/equipment/${image}.svg" alt="" loading="lazy"><span>${name}</span>`;
+      card.addEventListener('click', () => { selectedItem = { name, image }; selectedPhase = ''; wizard.hidden = false; renderWizard(); wizard.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
+      track.append(card);
+    }); updateProgress();
+  };
+  const updateProgress = () => { const max = track.scrollWidth - track.clientWidth; progress.style.width = `${max > 0 ? Math.max(8, track.clientWidth / track.scrollWidth * 100) : 100}%`; progress.style.transform = `translateX(${max > 0 ? track.scrollLeft / max * (100 - parseFloat(progress.style.width)) : 0}%)`; };
+  track.addEventListener('scroll', updateProgress, { passive: true });
+  $$('.carousel__arrow').forEach((button) => button.addEventListener('click', () => track.scrollBy({ left: Number(button.dataset.direction) * Math.max(220, track.clientWidth * .72), behavior: reduce ? 'auto' : 'smooth' })));
+  $$('.equipment-tab').forEach((tab) => tab.addEventListener('click', () => { categoryKey = tab.dataset.category; $$('.equipment-tab').forEach((item) => { const active = item === tab; item.classList.toggle('is-active', active); item.setAttribute('aria-selected', String(active)); }); selectedItem = null; wizard.hidden = true; track.scrollLeft = 0; renderCards(); }));
+  const renderWizard = () => {
+    const station = categoryKey === 'stations';
+    if (!station && !selectedPhase) {
+      wizardContent.innerHTML = `<p class="kicker">КРОК 1 · ФАЗНІСТЬ</p><h3>Оберіть фазність</h3><div class="wizard__choices"><button type="button" data-phase="1 фаза">1 ФАЗА</button><button type="button" data-phase="3 фази">3 ФАЗИ</button></div>`;
+      $$('[data-phase]', wizardContent).forEach((button) => button.addEventListener('click', () => { selectedPhase = button.dataset.phase; renderWizard(); })); return;
+    }
+    const title = station ? `Підключення ${selectedItem.name}` : `Монтаж інвертора ${selectedItem.name} · ${selectedPhase}`;
+    const price = station ? equipmentConfig.prices.station : equipmentConfig.prices.inverter;
+    wizardContent.innerHTML = `<div class="wizard__result"><div><p class="kicker">ВАШ ВИБІР</p><h3>${title}</h3><p class="muted">Вартість монтажу</p><strong class="wizard__price">${price}</strong><button type="button" class="btn btn--gold btn--lg" id="wizard-request">Оформити заявку →</button></div><img src="/img/equipment/${selectedItem.image}.svg" alt="${selectedItem.name}"></div>`;
+    $('#wizard-request', wizardContent).addEventListener('click', () => { serviceInput.value = `${equipmentConfig.categories[categoryKey].label} · ${selectedItem.name}${selectedPhase ? ` · ${selectedPhase}` : ''}`; $('#f-message').value = `Прошу прорахувати ${title}. Орієнтовна вартість монтажу: ${price}.`; $('#request').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); window.setTimeout(() => $('#f-name').focus({ preventScroll: true }), reduce ? 0 : 500); });
+  };
+  $('#wizard-back').addEventListener('click', () => { if (categoryKey === 'inverters' && selectedPhase) { selectedPhase = ''; renderWizard(); } else { wizard.hidden = true; selectedItem = null; } });
+  renderCards();
+  window.addEventListener('resize', updateProgress, { passive: true });
 
   const lightbox = document.createElement('dialog');
   lightbox.className = 'gallery-lightbox';
