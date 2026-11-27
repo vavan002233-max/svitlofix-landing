@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap">
   <link rel="preload" as="image" href="/img/hero.webp" imagesrcset="/img/hero-sm.webp 900w, /img/hero.webp 1376w" imagesizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/styles.css?v=20261127-6">
+  <link rel="stylesheet" href="/assets/styles.css?v=20261127-7">
 
   <script type="application/ld+json">
   {
@@ -153,7 +153,7 @@
         <div class="carousel" aria-label="Оберіть обладнання"><button class="carousel__arrow" type="button" data-direction="-1" aria-label="Прокрутити вліво">‹</button><div class="carousel__track" id="equipment-track" tabindex="0" aria-label="Обладнання"></div><button class="carousel__arrow" type="button" data-direction="1" aria-label="Прокрутити вправо">›</button></div>
         <div class="carousel-progress" aria-hidden="true"><span id="carousel-progress"></span></div>
         <section class="wizard" id="equipment-wizard" aria-live="polite" hidden><button type="button" class="wizard__back" id="wizard-back">← Назад до обладнання</button><div id="wizard-content"></div></section>
-        <div class="equipment-request" id="request" hidden><div class="equipment-request__intro"><p class="kicker"><span class="mono">КРОК 3</span> Калькулятор і прорахунок</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
+        <div class="equipment-request" id="request" hidden><div class="equipment-request__intro"><p class="kicker"><span class="mono">КРОК 3</span> Калькулятор і прорахунок</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p><button type="button" class="wizard__back request__back" id="request-back">← Повернутися до вибору</button></div>
           <form class="form reveal" id="lead-form" action="/api/lead" method="post" enctype="multipart/form-data" novalidate>
             <input type="hidden" name="service" id="f-service" value="">
             <div class="form__row"><div class="field"><label for="f-name">Ім’я *</label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Як до вас звертатися"><p class="field__err" id="err-name" role="alert"></p></div><div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="32" placeholder="+380 __ ___ __ __"><p class="field__err" id="err-phone" role="alert"></p></div></div>
@@ -387,9 +387,9 @@
               Viber
             </a>
             <div class="contact-qr" aria-label="QR-коди для зв’язку">
-              <a href="https://t.me/+380730732072" target="_blank" rel="noopener"><img src="/img/qr-telegram.svg?v=20261127-6" alt="QR-код для Telegram"><span>Telegram</span></a>
-              <a href="https://wa.me/380730732072" target="_blank" rel="noopener"><img src="/img/qr-whatsapp.svg?v=20261127-6" alt="QR-код для WhatsApp"><span>WhatsApp</span></a>
-              <a href="viber://chat?number=%2B380730732072"><img src="/img/qr-viber.svg?v=20261127-6" alt="QR-код для Viber"><span>Viber</span></a>
+              <a href="https://t.me/+380730732072" target="_blank" rel="noopener"><img src="/img/qr-telegram.svg?v=20261127-7" alt="QR-код для Telegram"><span>Telegram</span></a>
+              <a href="https://wa.me/380730732072" target="_blank" rel="noopener"><img src="/img/qr-whatsapp.svg?v=20261127-7" alt="QR-код для WhatsApp"><span>WhatsApp</span></a>
+              <a href="viber://chat?number=%2B380730732072"><img src="/img/qr-viber.svg?v=20261127-7" alt="QR-код для Viber"><span>Viber</span></a>
             </div>
             <a class="btn btn--ghost btn--lg" href="#equipment">Залишити заявку</a>
           </div>
@@ -422,7 +422,7 @@
     <a href="#equipment" class="dock__main">Прорахунок</a>
   </div>
 
-  <script src="/assets/app.js?v=20261127-6" defer></script>
+  <script src="/assets/app.js?v=20261127-8" defer></script>
 </body>
 </html>
 
