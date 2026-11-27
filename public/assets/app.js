@@ -63,6 +63,23 @@
   }
   onScroll();
 
+  // Analytics hook: forwards to GA4 when gtag is configured and to GTM via dataLayer.
+  const track = (name, params = {}) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: name, ...params });
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
+  };
+  document.addEventListener('click', (event) => {
+    const contact = event.target.closest('[data-contact], a[href^="tel:"]');
+    if (contact) track('contact_click', { contact_method: contact.dataset.contact || 'phone' });
+    const privacyLink = event.target.closest('[data-open-privacy]');
+    if (privacyLink) { event.preventDefault(); $('#privacy')?.showModal(); }
+  });
+  const privacyDialog = $('#privacy');
+  privacyDialog?.addEventListener('click', (event) => {
+    if (event.target === privacyDialog || event.target.closest('.privacy-dialog__close')) privacyDialog.close();
+  });
+
   const year = $('#year');
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -190,7 +207,6 @@
   const rules = {
     name: (v) => (v.trim().length >= 2 ? '' : 'Вкажіть ваше ім’я'),
     phone: (v) => (v.replace(/\D/g, '').length >= 9 ? '' : 'Вкажіть номер телефону, наприклад 073 073 20 72'),
-    message: (v) => (v.trim().length >= 5 ? '' : 'Опишіть задачу кількома словами'),
   };
   const showError = (name, msg) => {
     const el = form.elements[name];
@@ -259,6 +275,7 @@
       } else if (note.dataset.base) {
         note.innerHTML = note.dataset.base;
       }
+      track('lead_submit_success', { photos_count: files.length - skipped, photos_delivered: data.photosDelivered !== false });
       success.hidden = false;
       success.querySelector('h3').setAttribute('tabindex', '-1');
       success.querySelector('h3').focus();

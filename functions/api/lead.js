@@ -92,14 +92,13 @@ export async function onRequest({ request, env }) {
 
   const name = clean(form.get('name'), 80);
   const phone = clean(form.get('phone'), 32);
-  const message = clean(form.get('message'), 3000);
+  const message = clean(form.get('message'), 3000) || 'Запит на консультацію / попередній прорахунок';
   const city = clean(form.get('city'), 80);
   const service = clean(form.get('service'), 100);
 
   const errors = {};
   if (name.length < 2) errors.name = 'Вкажіть ім’я';
   if (phone.replace(/\D/g, '').length < 9) errors.phone = 'Вкажіть коректний номер телефону';
-  if (message.length < 5) errors.message = 'Опишіть задачу кількома словами';
   if (Object.keys(errors).length) return json(422, { ok: false, errors });
 
   const photos = form

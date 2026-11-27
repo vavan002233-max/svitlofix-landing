@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <script>document.documentElement.classList.add("js")</script>
+  <!-- Analytics setup: add either the Google tag (gtag.js) or GTM container snippet here after replacing its ID. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>SvitloFix — монтаж резервного живлення у Києві та області</title>
   <meta name="description" content="SvitloFix: монтаж інверторів, акумуляторів і систем резервного живлення під ключ у Києві та Київській області. Прорахунок вартості за фото. Телефонуйте 073 073 20 72.">
@@ -216,15 +217,16 @@
           <button class="service-card reveal" type="button" data-service="Система накопичення енергії" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="42" y="16" width="96" height="100" rx="12"/><rect x="54" y="29" width="72" height="55" rx="6"/><path d="m91 38-13 21h12l-4 15 18-23H92zM67 99h46"/></svg></span><b>Система накопичення енергії</b><small>Marstek Venus-E V3 · 5.12 kWh</small></button>
           <button class="service-card reveal" type="button" data-service="EcoFlow" aria-pressed="false"><span class="service-card__art"><svg viewBox="0 0 180 130"><rect x="34" y="34" width="112" height="72" rx="12"/><path d="M62 34V25h56v9M51 52h27v34H51zM91 55h39m-39 12h39m-39 12h24"/><circle cx="64" cy="69" r="5"/></svg></span><b>EcoFlow</b><small>Портативні зарядні станції</small></button>
         </div>
+        <p class="equipment__brands muted">Працюємо з обладнанням різних виробників: Deye, Solis, Victron, EcoFlow, Bluetti, Felicity та іншими. Підбір залежить від ваших потреб і сумісності системи.</p>
         <div class="price-panel reveal" id="service-details" aria-live="polite"><div><p class="kicker">ОБРАНА ПОСЛУГА</p><h3 id="service-title">Монтаж інвертора</h3><p id="service-description">Підключимо батарею, встановимо інвертор, розключимо електрощит і налаштуємо застосунок на телефоні. Повний монтаж і запуск під ключ.</p></div><div class="price-panel__side"><span class="muted">Вартість монтажу</span><strong id="service-price">від 12 000 грн</strong><a class="btn btn--gold btn--lg" href="#lead-form">Залишити заявку →</a></div></div>
         <div class="equipment-request" id="request"><div class="equipment-request__intro"><p class="kicker"><span class="mono">/ 03</span> Прорахунок і заявка</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Оберіть систему, додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
           <form class="form reveal" id="lead-form" action="/api/lead" method="post" enctype="multipart/form-data" novalidate>
             <input type="hidden" name="service" id="f-service" value="Інвертор">
             <div class="form__row"><div class="field"><label for="f-name">Ім’я *</label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Як до вас звертатися"><p class="field__err" id="err-name" role="alert"></p></div><div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="32" placeholder="+380 __ ___ __ __"><p class="field__err" id="err-phone" role="alert"></p></div></div>
             <div class="field"><label for="f-city">Населений пункт <span class="muted">(необов’язково)</span></label><input id="f-city" name="city" type="text" autocomplete="address-level2" maxlength="80" placeholder="Київ або населений пункт області"></div>
-            <div class="field"><label for="f-message">Опис задачі *</label><textarea id="f-message" name="message" rows="3" required maxlength="3000" placeholder="Що потрібно підключити та які прилади мають працювати?"></textarea><p class="field__err" id="err-message" role="alert"></p></div>
+            <div class="field"><label for="f-message">Опис задачі <span class="muted">(необов’язково)</span></label><textarea id="f-message" name="message" rows="3" maxlength="3000" placeholder="Що потрібно підключити та які прилади мають працювати?"></textarea><p class="field__err" id="err-message" role="alert"></p></div>
             <div class="field"><span class="label">Фото об’єкта (до 6 шт.)</span><label class="drop" id="drop" for="f-photos"><input id="f-photos" name="photos" type="file" accept="image/*" multiple class="sr-only"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 15V4m-4 4 4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span><b>Додати фото</b> або перетягніть сюди</span><small class="muted">JPG, PNG — автоматично стискаємо</small></label><ul class="thumbs" id="thumbs" aria-live="polite"></ul></div>
-            <div class="hp" aria-hidden="true"><label for="f-company">Компанія</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div><button class="btn btn--gold btn--lg btn--block" type="submit" id="submit"><span class="btn__text">Надіслати заявку</span><span class="btn__spinner" aria-hidden="true"></span></button><p class="form__note muted">Натискаючи кнопку, ви погоджуєтеся на обробку контактних даних.</p><div class="form__status" id="form-status" role="status" aria-live="polite"></div><div class="form__success" id="form-success" hidden><h3>Заявку отримано</h3><p>Дякуємо! Ми зв’яжемося з вами найближчим часом. Телефонуйте: <a href="tel:+380730732072">073 073 20 72</a>.</p><button type="button" class="btn btn--ghost" id="form-again">Надіслати ще одну</button></div></form></div>
+            <div class="hp" aria-hidden="true"><label for="f-company">Компанія</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div><button class="btn btn--gold btn--lg btn--block" type="submit" id="submit"><span class="btn__text">Надіслати заявку</span><span class="btn__spinner" aria-hidden="true"></span></button><p class="form__note muted">Натискаючи кнопку, ви погоджуєтеся на обробку контактних даних відповідно до <a href="#privacy" data-open-privacy>Політики конфіденційності</a>.</p><div class="form__status" id="form-status" role="status" aria-live="polite"></div><div class="form__success" id="form-success" hidden><h3>Заявку отримано</h3><p>Дякуємо! Ми зв’яжемося з вами найближчим часом. Телефонуйте: <a href="tel:+380730732072">073 073 20 72</a>.</p><button type="button" class="btn btn--ghost" id="form-again">Надіслати ще одну</button></div></form></div>
       </div>
     </section>
 
@@ -365,17 +367,19 @@
             <p class="kicker"><span class="mono">/ 08</span> Контакти</p>
             <h2 id="contacts-title" class="h2">Зв’яжіться з нами зручним способом</h2>
             <a class="contacts__phone" href="tel:+380730732072">073 073 20 72</a>
-            <p class="muted">Працюємо в Києві та Київській області. Телефон та Telegram — один номер.</p>
+            <p class="muted">Працюємо в Києві та Київській області. Обирайте зручний спосіб зв’язку.</p>
           </div>
           <div class="contacts__actions">
             <a class="btn btn--gold btn--lg" href="tel:+380730732072">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
               Подзвонити
             </a>
-            <a class="btn btn--tg btn--lg" href="https://t.me/+380730732072" target="_blank" rel="noopener">
+            <!-- Замініть YOUR_TELEGRAM_USERNAME на username Telegram та номер у Viber на актуальний контакт. -->
+            <a class="btn btn--tg btn--lg" href="https://t.me/YOUR_TELEGRAM_USERNAME" data-contact="telegram" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.7 14l9-5.7c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.2z" fill="currentColor"/></svg>
               Написати в Telegram
             </a>
+            <a class="btn btn--ghost btn--lg" href="viber://chat?number=%2B380XXXXXXXXX" data-contact="viber">Написати у Viber</a>
             <a class="btn btn--ghost btn--lg" href="#equipment">Залишити заявку</a>
           </div>
         </div>
@@ -391,6 +395,7 @@
       </a>
       <p class="muted">Монтаж систем резервного та автономного електроживлення під ключ.</p>
       <p class="muted mono">© <span id="year">2026</span> SvitloFix</p>
+      <a href="#privacy" data-open-privacy>Політика конфіденційності</a>
     </div>
   </footer>
 
@@ -400,13 +405,25 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
       Дзвінок
     </a>
-    <a href="https://t.me/+380730732072" target="_blank" rel="noopener" aria-label="Telegram">
+    <!-- Замініть YOUR_TELEGRAM_USERNAME на username Telegram. -->
+    <a href="https://t.me/YOUR_TELEGRAM_USERNAME" data-contact="telegram" target="_blank" rel="noopener" aria-label="Telegram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.7 14l9-5.7c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.2z" fill="currentColor"/></svg>
       Telegram
     </a>
     <a href="#equipment" class="dock__main">Прорахунок</a>
   </div>
 
+  <dialog class="privacy-dialog" id="privacy" aria-labelledby="privacy-title">
+    <button class="privacy-dialog__close" type="button" aria-label="Закрити політику">×</button>
+    <h2 id="privacy-title">Політика конфіденційності</h2>
+    <div class="privacy-dialog__body">
+      <p>Ця політика пояснює, як SvitloFix обробляє дані, які ви надаєте через форму на сайті щодо послуг у Києві та Київській області.</p>
+      <h3>Які дані ми отримуємо</h3><p>Ім’я, номер телефону, населений пункт, опис задачі та фотографії, які ви вирішили додати. Обов’язковими для заявки є ім’я й телефон.</p>
+      <h3>Мета та використання</h3><p>Ми використовуємо дані, щоб відповісти на звернення, уточнити потреби, підготувати попередню консультацію чи прорахунок і домовитися про надання послуг. Дані заявки передаються до Telegram для отримання та обробки звернень.</p>
+      <h3>Зберігання та права</h3><p>Доступ до даних мають лише особи, яким вони потрібні для відповіді на звернення. Ми зберігаємо дані стільки, скільки потрібно для цієї мети або виконання вимог законодавства, та вживаємо розумних заходів для їх захисту. Ви можете звернутися телефоном <a href="tel:+380730732072" data-contact="phone">073 073 20 72</a> із запитом щодо доступу, виправлення чи видалення ваших даних, якщо це допускається законом.</p>
+      <p>Надсилаючи форму, ви підтверджуєте, що ознайомилися з цією політикою.</p>
+    </div>
+  </dialog>
   <script src="/assets/app.js" defer></script>
 </body>
 </html>
