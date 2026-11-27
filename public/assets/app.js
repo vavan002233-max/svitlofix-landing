@@ -72,7 +72,7 @@
 
   const serviceInput = $('#f-service');
   const equipmentConfig = {
-    prices: { inverter: 'від 10 000 грн', station: { single: 'від 6 000 грн', three: 'від 8 000 грн' } },
+    prices: { inverter: { single: 'від 10 000 грн', three: 'від 12 000 грн' }, station: { single: 'від 6 000 грн', three: 'від 8 000 грн' } },
     categories: {
       inverters: { label: 'Інвертори та системи накопичення', type: 'Монтаж інвертора', items: [
         ['Deye','deye'],['Solis','solis'],['Must','must'],['Growatt','growatt'],['Victron','victron'],['LuxPower','luxpower'],['HYXiPOWER','hyxipower'],['Felicity','felicity'],['Інші','inverter-other']
@@ -105,7 +105,7 @@
     }
     const phaseLabel = selectedPhase === 'single' ? '1 фаза' : selectedPhase === 'three' ? '3 фази' : '';
     const title = station ? `Підключення ${selectedItem.name}` : `Монтаж інвертора ${selectedItem.name} · ${phaseLabel}`;
-    const price = station ? equipmentConfig.prices.station[selectedPhase] : equipmentConfig.prices.inverter;
+    const price = equipmentConfig.prices[station ? 'station' : 'inverter'][selectedPhase];
     wizardContent.innerHTML = `<div class="wizard__result"><div><p class="kicker">${station ? 'РЕЗУЛЬТАТ' : 'КРОК 2 · РЕЗУЛЬТАТ'}</p><h3>${title}</h3><p class="muted">Вартість монтажу</p><strong class="wizard__price">${price}</strong><button type="button" class="btn btn--gold btn--lg" id="wizard-request">Оформити заявку →</button></div><img src="/img/equipment/${selectedItem.image}.svg?v=20261127-7" alt="${selectedItem.name}"></div>`;
     $('#wizard-request', wizardContent).addEventListener('click', () => {
       serviceInput.value = `${equipmentConfig.categories[categoryKey].label} · ${selectedItem.name}${phaseLabel ? ` · ${phaseLabel}` : ''}`;
