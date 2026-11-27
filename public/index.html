@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap">
   <link rel="preload" as="image" href="/img/hero.webp" imagesrcset="/img/hero-sm.webp 900w, /img/hero.webp 1376w" imagesizes="(max-width: 900px) 100vw, 58vw" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/styles.css?v=20261127-3">
+  <link rel="stylesheet" href="/assets/styles.css?v=20261127-4">
 
   <script type="application/ld+json">
   {
@@ -145,6 +145,7 @@
           <h2 id="equipment-title" class="h2 reveal">Працюємо з перевіреною технікою і підбираємо її під задачу, а не під каталог</h2>
         </div>
 
+        <p class="equipment-step-label"><span class="mono">КРОК 1</span> Оберіть категорію та обладнання</p>
         <div class="equipment-tabs" role="tablist" aria-label="Категорія обладнання">
           <button class="equipment-tab is-active" type="button" role="tab" aria-selected="true" data-category="inverters">Інвертори та системи накопичення</button>
           <button class="equipment-tab" type="button" role="tab" aria-selected="false" data-category="stations">Портативні зарядні станції</button>
@@ -152,7 +153,7 @@
         <div class="carousel" aria-label="Оберіть обладнання"><button class="carousel__arrow" type="button" data-direction="-1" aria-label="Прокрутити вліво">‹</button><div class="carousel__track" id="equipment-track" tabindex="0" aria-label="Обладнання"></div><button class="carousel__arrow" type="button" data-direction="1" aria-label="Прокрутити вправо">›</button></div>
         <div class="carousel-progress" aria-hidden="true"><span id="carousel-progress"></span></div>
         <section class="wizard" id="equipment-wizard" aria-live="polite" hidden><button type="button" class="wizard__back" id="wizard-back">← Назад до обладнання</button><div id="wizard-content"></div></section>
-        <div class="equipment-request" id="request"><div class="equipment-request__intro"><p class="kicker"><span class="mono">КАЛЬКУЛЯТОР</span> Прорахунок і заявка</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Оберіть систему, додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
+        <div class="equipment-request" id="request" hidden><div class="equipment-request__intro"><p class="kicker"><span class="mono">КРОК 3</span> Калькулятор і прорахунок</p><h3>Розкажіть, що потрібно підключити</h3><p class="muted">Додайте фото електрощита чи місця монтажу — ми зв’яжемося з вами та уточнимо деталі.</p></div>
           <form class="form reveal" id="lead-form" action="/api/lead" method="post" enctype="multipart/form-data" novalidate>
             <input type="hidden" name="service" id="f-service" value="">
             <div class="form__row"><div class="field"><label for="f-name">Ім’я *</label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Як до вас звертатися"><p class="field__err" id="err-name" role="alert"></p></div><div class="field"><label for="f-phone">Телефон *</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="32" placeholder="+380 __ ___ __ __"><p class="field__err" id="err-phone" role="alert"></p></div></div>
@@ -366,7 +367,7 @@
             <p class="kicker"><span class="mono">/ 07</span> Контакти</p>
             <h2 id="contacts-title" class="h2">Зв’яжіться з нами зручним способом</h2>
             <a class="contacts__phone" href="tel:+380730732072">073 073 20 72</a>
-            <p class="muted">Працюємо в Києві та Київській області. Телефон та Telegram — один номер.</p>
+            <p class="muted">Працюємо в Києві та Київській області. Телефон, Telegram, WhatsApp і Viber — один номер.</p>
           </div>
           <div class="contacts__actions">
             <a class="btn btn--gold btn--lg" href="tel:+380730732072">
@@ -377,6 +378,18 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.7 14l9-5.7c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.2z" fill="currentColor"/></svg>
               Написати в Telegram
             </a>
+            <a class="btn btn--whatsapp btn--lg" href="https://wa.me/380730732072" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.2 9.2 0 0 0-7.9 13.9L3 21l4.8-1.1A9.2 9.2 0 1 0 12 2.5Zm0 16.6a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.8.7.7-2.7-.2-.3A7.3 7.3 0 1 1 12 19.1Zm4-5.5c-.2-.1-1.3-.7-1.5-.8-.2-.1-.4-.1-.5.1l-.7.8c-.1.1-.3.2-.5.1a6 6 0 0 1-2.9-2.5c-.2-.3.2-.3.6-1.1.1-.2 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4H8.8c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4a9.5 9.5 0 0 0 3.7 3.3c1.4.6 2 .7 2.7.6.8-.1 1.3-.6 1.5-1.1.2-.5.2-1 .1-1.1-.1-.2-.2-.3-.4-.4Z" fill="currentColor"/></svg>
+              WhatsApp
+            </a>
+            <a class="btn btn--viber btn--lg" href="viber://chat?number=%2B380730732072">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 4.1C17.8 2.7 15.4 2 12.1 2h-.2C5.3 2 3.2 5.1 3 10.9v2.2c.1 3.5 1.2 5.9 3.4 7.3l.1 2.5 2.5-1.3c.9.2 1.8.3 2.8.3h.2c6.6 0 8.8-3.1 9-8.9v-2.2c-.1-3.4-.5-5.3-1.6-6.7ZM12 19.8h-.2c-.8 0-1.5-.1-2.2-.3l-.6-.2-1.2.6v-1.2l-.4-.3c-1.7-1.1-2.5-3-2.6-5.4v-2c.2-4.8 1.7-6.8 7-6.8h.2c5.3 0 6.8 2 7 6.8v2c-.2 4.8-1.7 6.8-7 6.8Zm4.1-8.1c-.2-1.8-1.2-2.8-3-3l-.2 1.4c1.1.1 1.6.7 1.8 1.8Zm-6.3-3.1-.3 1.4c1.5.3 2.3 1.1 2.5 2.6l1.4-.2c-.3-2.1-1.6-3.5-3.6-3.8Zm-.7-2.1-.3 1.4c2.9.5 4.6 2.2 5 5.1l1.4-.2c-.5-3.6-2.6-5.7-6.1-6.3Zm5.3 9.4c-.3-.2-.7-.4-1-.1l-.7.8c-.2.2-.5.2-.7.1a7.6 7.6 0 0 1-2.8-2.2c-.2-.2-.2-.5 0-.7l.7-.8c.3-.3.2-.7 0-1-.3-.4-.7-1-1.1-1.2-.3-.2-.6-.1-.8.1l-.8.9c-.4.5-.5 1.2-.2 1.8.8 1.7 2.4 3.4 4.1 4.2.6.3 1.3.2 1.8-.2l.9-.8c.2-.2.3-.5.1-.8-.2-.4-.8-.8-1.2-1.1Z" fill="currentColor"/></svg>
+              Viber
+            </a>
+            <div class="contact-qr" aria-label="QR-коди для зв’язку">
+              <a href="https://wa.me/380730732072" target="_blank" rel="noopener"><img src="/img/qr-whatsapp.svg?v=20261127-4" alt="QR-код для WhatsApp"><span>WhatsApp</span></a>
+              <a href="viber://chat?number=%2B380730732072"><img src="/img/qr-viber.svg?v=20261127-4" alt="QR-код для Viber"><span>Viber</span></a>
+            </div>
             <a class="btn btn--ghost btn--lg" href="#equipment">Залишити заявку</a>
           </div>
         </div>
@@ -408,7 +421,7 @@
     <a href="#equipment" class="dock__main">Прорахунок</a>
   </div>
 
-  <script src="/assets/app.js?v=20261127-3" defer></script>
+  <script src="/assets/app.js?v=20261127-4" defer></script>
 </body>
 </html>
 
