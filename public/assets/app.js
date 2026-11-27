@@ -72,16 +72,13 @@
 
   const serviceInput = $('#f-service');
   const equipmentConfig = {
-    prices: {
-      inverter: { single: 'від 10 000 грн', three: 'від 12 000 грн' },
-      station: { single: 'від 6 000 грн', three: 'від 8 000 грн' }
-    },
+    prices: { inverter: 'від 10 000 грн', station: 'від 6 000 грн' },
     categories: {
       inverters: { label: 'Інвертори та системи накопичення', type: 'Монтаж інвертора', items: [
         ['Deye','deye'],['Solis','solis'],['Must','must'],['Growatt','growatt'],['Victron','victron'],['LuxPower','luxpower'],['HYXiPOWER','hyxipower'],['Felicity','felicity'],['Інші','inverter-other']
       ]},
       stations: { label: 'Портативні зарядні станції', type: 'Підключення портативної зарядної станції', items: [
-        ['EcoFlow Delta 2','ecoflow-delta-2'],['EcoFlow Delta 3','ecoflow-delta-3'],['EcoFlow Delta Pro','ecoflow-delta-pro'],['Marstek Venus','marstek-venus'],['Інші','station-other']
+        ['DELTA','delta'],['Könner & Söhnen','konner-sohnen'],['RIVER 2 Pro','river-2-pro'],['Bluetti','bluetti'],['Anker Solix','anker-solix'],['Інші','station-other']
       ]}
     }
   };
@@ -91,7 +88,7 @@
     track.replaceChildren();
     equipmentConfig.categories[categoryKey].items.forEach(([name, image]) => {
       const card = document.createElement('button'); card.type = 'button'; card.className = 'equipment-card'; card.dataset.name = name;
-      card.innerHTML = `<img src="/img/equipment/${image}.svg?v=20261127-4" alt="" loading="lazy"><span>${name}</span>`;
+      card.innerHTML = `<img src="/img/equipment/${image}.svg?v=20261127-6" alt="" loading="lazy"><span>${name}</span>`;
       card.addEventListener('click', () => { selectedItem = { name, image }; selectedPhase = ''; $('#request').hidden = true; wizard.hidden = false; renderWizard(); wizard.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
       track.append(card);
     }); updateProgress();
@@ -102,16 +99,16 @@
   $$('.equipment-tab').forEach((tab) => tab.addEventListener('click', () => { categoryKey = tab.dataset.category; $$('.equipment-tab').forEach((item) => { const active = item === tab; item.classList.toggle('is-active', active); item.setAttribute('aria-selected', String(active)); }); selectedItem = null; selectedPhase = ''; $('#request').hidden = true; wizard.hidden = true; track.scrollLeft = 0; renderCards(); }));
   const renderWizard = () => {
     const station = categoryKey === 'stations';
-    if (!selectedPhase) {
-      wizardContent.innerHTML = `<p class="kicker">КРОК 2 · ФАЗНІСТЬ</p><h3>Оберіть фазність</h3><div class="wizard__choices"><button type="button" data-phase="single">1 ФАЗА</button><button type="button" data-phase="three">3 ФАЗИ</button></div>`;
+    if (!station && !selectedPhase) {
+      wizardContent.innerHTML = `<p class="kicker">КРОК 1 · ФАЗНІСТЬ</p><h3>Оберіть фазність</h3><div class="wizard__choices"><button type="button" data-phase="single">1 ФАЗА</button><button type="button" data-phase="three">3 ФАЗИ</button></div>`;
       $$('[data-phase]', wizardContent).forEach((button) => button.addEventListener('click', () => { selectedPhase = button.dataset.phase; renderWizard(); })); return;
     }
-    const phaseLabel = selectedPhase === 'single' ? '1 фаза' : '3 фази';
-    const title = station ? `Підключення ${selectedItem.name} · ${phaseLabel}` : `Монтаж інвертора ${selectedItem.name} · ${phaseLabel}`;
-    const price = equipmentConfig.prices[station ? 'station' : 'inverter'][selectedPhase];
-    wizardContent.innerHTML = `<div class="wizard__result"><div><p class="kicker">КРОК 3 · КАЛЬКУЛЯТОР І ПРОРАХУНОК</p><h3>${title}</h3><p class="muted">Вартість монтажу</p><strong class="wizard__price">${price}</strong><button type="button" class="btn btn--gold btn--lg" id="wizard-request">Оформити заявку →</button></div><img src="/img/equipment/${selectedItem.image}.svg?v=20261127-4" alt="${selectedItem.name}"></div>`;
+    const phaseLabel = selectedPhase === 'single' ? '1 фаза' : selectedPhase === 'three' ? '3 фази' : '';
+    const title = station ? `Підключення ${selectedItem.name}` : `Монтаж інвертора ${selectedItem.name} · ${phaseLabel}`;
+    const price = equipmentConfig.prices[station ? 'station' : 'inverter'];
+    wizardContent.innerHTML = `<div class="wizard__result"><div><p class="kicker">${station ? 'РЕЗУЛЬТАТ' : 'КРОК 2 · РЕЗУЛЬТАТ'}</p><h3>${title}</h3><p class="muted">Вартість монтажу</p><strong class="wizard__price">${price}</strong><button type="button" class="btn btn--gold btn--lg" id="wizard-request">Оформити заявку →</button></div><img src="/img/equipment/${selectedItem.image}.svg?v=20261127-6" alt="${selectedItem.name}"></div>`;
     $('#request').hidden = false;
-    $('#wizard-request', wizardContent).addEventListener('click', () => { serviceInput.value = `${equipmentConfig.categories[categoryKey].label} · ${selectedItem.name} · ${phaseLabel}`; $('#f-message').value = `Прошу прорахувати ${title}. Орієнтовна вартість монтажу: ${price}.`; $('#request').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); window.setTimeout(() => $('#f-name').focus({ preventScroll: true }), reduce ? 0 : 500); });
+    $('#wizard-request', wizardContent).addEventListener('click', () => { serviceInput.value = `${equipmentConfig.categories[categoryKey].label} · ${selectedItem.name}${phaseLabel ? ` · ${phaseLabel}` : ''}`; $('#f-message').value = `Прошу прорахувати ${title}. Орієнтовна вартість монтажу: ${price}.`; $('#request').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); window.setTimeout(() => $('#f-name').focus({ preventScroll: true }), reduce ? 0 : 500); });
   };
   $('#wizard-back').addEventListener('click', () => { if (selectedPhase) { selectedPhase = ''; $('#request').hidden = true; renderWizard(); } else { wizard.hidden = true; selectedItem = null; } });
   renderCards();

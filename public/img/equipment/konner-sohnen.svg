@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" width="280" height="280" fill="none">
+  <defs>
+    <radialGradient id="studioBg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0B1120"/>
+    </radialGradient>
+    <linearGradient id="whiteChassis" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="silverMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="50%" stop-color="#94A3B8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <linearGradient id="darkChassis" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#090D16"/>
+    </linearGradient>
+    <linearGradient id="matteBlack" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#27272A"/>
+      <stop offset="100%" stop-color="#09090B"/>
+    </linearGradient>
+    <linearGradient id="victronBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="55%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="ksBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="bluettiBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="screenGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-15%" y="-10%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+  </defs>
+  <rect width="280" height="280" rx="24" fill="url(#studioBg)"/>
+  <ellipse cx="140" cy="242" rx="76" ry="12" fill="#000000" opacity="0.55"/>
+  
+  <g filter="url(#dropShadow)">
+    <path d="M96 64 H184 L192 84 H88 Z" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <rect x="58" y="82" width="164" height="130" rx="16" fill="url(#matteBlack)" stroke="#3B82F6" stroke-width="2"/>
+    <path d="M58 98 C58 89.2 65.2 82 74 82 H84 V212 H74 C65.2 212 58 204.8 58 196 Z" fill="url(#ksBlue)"/>
+    <path d="M196 82 H206 C214.8 82 222 89.2 222 98 V196 C222 204.8 214.8 212 206 212 H196 Z" fill="url(#ksBlue)"/>
+    <rect x="96" y="104" width="88" height="42" rx="6" fill="#020617" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="140" y="129" text-anchor="middle" fill="#60A5FA" font-family="monospace" font-weight="800" font-size="15">100% AC</text>
+    <circle cx="118" cy="174" r="14" fill="#18181B" stroke="#52525B" stroke-width="2"/>
+    <circle cx="113" cy="174" r="2.2" fill="#E4E4E7"/>
+    <circle cx="123" cy="174" r="2.2" fill="#E4E4E7"/>
+    <circle cx="162" cy="174" r="14" fill="#18181B" stroke="#52525B" stroke-width="2"/>
+    <circle cx="157" cy="174" r="2.2" fill="#E4E4E7"/>
+    <circle cx="167" cy="174" r="2.2" fill="#E4E4E7"/>
+    <text x="140" y="96" text-anchor="middle" fill="#93C5FD" font-family="Arial, sans-serif" font-weight="800" font-size="9" letter-spacing="0.8">KÖNNER &amp; SÖHNEN</text>
+  </g>
+
+</svg>
